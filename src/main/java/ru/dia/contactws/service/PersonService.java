@@ -1,6 +1,6 @@
-package service;
+package ru.dia.contactws.service;
 
-import domain.Person;
+import ru.dia.contactws.domain.Person;
 
 import java.util.List;
 

@@ -1,7 +1,5 @@
-package dao;
+package ru.dia.contactws.dao;
 
-import domain.Person;
-import mapper.PersonRowMapper;
 import org.springframework.jdbc.core.PreparedStatementCallback;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -9,6 +7,8 @@ import org.springframework.jdbc.core.namedparam.SqlParameterSource;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
+import ru.dia.contactws.domain.Person;
+import ru.dia.contactws.mapper.PersonRowMapper;
 
 import java.sql.PreparedStatement;
 import java.util.HashMap;

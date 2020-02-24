@@ -1,4 +1,4 @@
-package domain;
+package ru.dia.contactws.domain;
 
 import java.io.Serializable;
 

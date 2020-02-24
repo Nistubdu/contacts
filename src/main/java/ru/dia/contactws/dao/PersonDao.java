@@ -1,6 +1,6 @@
-package dao;
+package ru.dia.contactws.dao;
 
-import domain.Person;
+import ru.dia.contactws.domain.Person;
 
 import java.util.List;
 

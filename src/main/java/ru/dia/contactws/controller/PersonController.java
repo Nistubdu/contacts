@@ -1,8 +1,8 @@
-package controller;
+package ru.dia.contactws.controller;
 
-import domain.Person;
 import org.springframework.web.bind.annotation.*;
-import service.PersonService;
+import ru.dia.contactws.domain.Person;
+import ru.dia.contactws.service.PersonService;
 
 import javax.annotation.Resource;
 import java.util.List;

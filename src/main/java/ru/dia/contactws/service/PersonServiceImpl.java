@@ -1,8 +1,8 @@
-package service;
+package ru.dia.contactws.service;
 
-import dao.PersonDao;
-import domain.Person;
 import org.springframework.stereotype.Component;
+import ru.dia.contactws.dao.PersonDao;
+import ru.dia.contactws.domain.Person;
 
 import javax.annotation.Resource;
 import java.util.List;
