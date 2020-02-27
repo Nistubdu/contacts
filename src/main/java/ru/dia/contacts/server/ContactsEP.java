@@ -36,23 +36,22 @@ public class ContactsEP {
 
         GetAllContactsResponse response = new GetAllContactsResponse();
 
-        contactRepository.findAll();
-        personRepository.findAll();
-        contactTypeRepository.findAll();
-
-        /*
         personRepository.findAll().forEach( person -> {
 
             PersonObject personObject = new PersonObject();
             personObject.setId( person.getId() );
-            personObject.setId( person.getId() );
-            personObject.setId( person.getId() );
-            personObject.setId( person.getId() );
+            personObject.setFirstName( person.getFirstName() );
+            personObject.setLastName( person.getLastName() );
+            personObject.setMiddleName( person.getMiddleName() );
+
+            contactRepository.byPersonId( person.getId() ); // TODO
+
+
+
 
             response.getPersonObjects().add( personObject );
         } );
-*/
-        response.getPersonObjects().add( new PersonObject() );
+
         return response;
     }
 }

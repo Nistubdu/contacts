@@ -16,7 +16,7 @@
     <xs:element name="getAllContactsResponse">
         <xs:complexType>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObjects" type="tns:PersonObject"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObject" type="tns:PersonObject"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -24,11 +24,11 @@
     <xs:complexType name="PersonObject">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
-            <xs:element name="firstName" type="xs:string"/>
             <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="firstName" type="xs:string"/>
             <xs:element name="middleName" type="xs:string" minOccurs="0"/>
             <xs:sequence>
-                <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObjects" type="tns:ContactObject"/>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObject" type="tns:ContactObject"/>
             </xs:sequence>
         </xs:sequence>
     </xs:complexType>
@@ -38,7 +38,7 @@
             <xs:element name="id" type="xs:long"/>
             <xs:element name="number" type="xs:string"/>
             <xs:sequence>
-                <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+                <xs:element name="ContactTypeObject" type="tns:ContactTypeObject"/>
             </xs:sequence>
         </xs:sequence>
     </xs:complexType>
@@ -48,7 +48,7 @@
             <xs:element name="id" type="xs:long"/>
             <xs:element name="number" type="xs:string"/>
             <xs:sequence>
-                <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+                <xs:element name="ContactTypeObject" type="tns:ContactTypeObject"/>
             </xs:sequence>
         </xs:sequence>
     </xs:complexType>

@@ -19,7 +19,7 @@ public class Person {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
-    @Column(name = "middle_mane")
+    @Column(name = "middle_name")
     private String middleName;
 
     public Long getId() {
