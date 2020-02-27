@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ru.dia</groupId>
-	<artifactId>contactws</artifactId>
+	<artifactId>contacts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>contactws</name>
+	<name>contact</name>
 	<description>Demo ws project for Spring Boot</description>
 
 	<properties>
@@ -93,31 +93,22 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.cxf</groupId>
-				<artifactId>cxf-codegen-plugin</artifactId>
-				<version>3.1.0</version>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>jaxb2-maven-plugin</artifactId>
+				<version>2.5.0</version>
 				<executions>
 					<execution>
-						<id>generate-sources</id>
-						<phase>generate-sources</phase>
-						<configuration>
-							<!-- 		                <sourceRoot>${project.build.directory}/generated/cxf</sourceRoot> -->
-							<sourceRoot>${basedir}/src/main/java</sourceRoot>
-							<wsdlOptions>
-								<wsdlOption>
-									<wsdl>${basedir}/src/main/resources/contacts.wsdl</wsdl>
-									<extraargs>
-										<!-- <extraarg>-impl</extraarg> -->
-										<!-- <extraarg>-verbose</extraarg> -->
-									</extraargs>
-								</wsdlOption>
-							</wsdlOptions>
-						</configuration>
+						<id>xjc</id>
 						<goals>
-							<goal>wsdl2java</goal>
+							<goal>xjc</goal>
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<sources>
+						<source>${project.basedir}/src/main/resources/contacts.xsd</source>
+					</sources>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
