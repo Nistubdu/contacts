@@ -19,7 +19,6 @@ public class LiquibaseConfiguration {
 
     private final Environment env;
 
-
     public LiquibaseConfiguration(Environment env) {
         this.env = env;
     }
@@ -33,7 +32,7 @@ public class LiquibaseConfiguration {
         liquibase.setChangeLog("classpath:liquibase/master.xml");
         liquibase.setContexts(liquibaseProperties.getContexts());
         liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
-        liquibase.setDropFirst(liquibaseProperties.isDropFirst());
+        liquibase.setDropFirst( true );
         liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
         liquibase.setShouldRun(liquibaseProperties.isEnabled());
 

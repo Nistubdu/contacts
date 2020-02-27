@@ -12,6 +12,7 @@ public class ContactwsApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(ContactwsApplication.class, args);
+
 	}
 
 }

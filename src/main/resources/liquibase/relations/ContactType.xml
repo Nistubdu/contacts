@@ -4,10 +4,10 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
-    <changeSet id="1" author="vt">
+    <changeSet id="03" author="vt">
         <createTable tableName="contact_type">
 
-            <column name="id" type="bigint" autoIncrement="${autoIncrement}">
+            <column name="id" type="bigint" autoIncrement="${autoIncrement}" defaultValueComputed="nextval('contact_type_id_seq')">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
 
