@@ -1,4 +1,4 @@
-package ru.dia.contactws.domain;
+package ru.dia.contacts.domain;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -6,7 +6,7 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "person")
-public class Person implements Serializable {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSON_ID_GEN")

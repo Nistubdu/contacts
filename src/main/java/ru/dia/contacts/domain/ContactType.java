@@ -1,4 +1,4 @@
-package ru.dia.contactws.domain;
+package ru.dia.contacts.domain;
 
 import javax.persistence.*;
 import java.util.Objects;

@@ -1,4 +1,4 @@
-package ru.dia.contactws.config;
+package ru.dia.contacts.config;
 
 import liquibase.integration.spring.SpringLiquibase;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ public class LiquibaseConfiguration {
         liquibase.setChangeLog("classpath:liquibase/master.xml");
         liquibase.setContexts(liquibaseProperties.getContexts());
         liquibase.setDefaultSchema(liquibaseProperties.getDefaultSchema());
-        liquibase.setDropFirst( true );
+        liquibase.setDropFirst( liquibaseProperties.isDropFirst() );
         liquibase.setChangeLogParameters(liquibaseProperties.getParameters());
         liquibase.setShouldRun(liquibaseProperties.isEnabled());
 

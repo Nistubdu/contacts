@@ -1,114 +1,170 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
-                  xmlns:tns="http://ws.server.contactws.dia.ru/v1/"
-                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ContactsSOAP"
-                  targetNamespace="http://ws.server.contactws.dia.ru/v1/">
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://ws.server.contacts.dia.ru/"
+        targetNamespace="http://ws.server.contacts.dia.ru/"
+        elementFormDefault="qualified">
 
+    <xs:element name="getAllContactsRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- no parameters -->
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="getAllContactsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObjects" type="tns:PersonObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="PersonObject">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="firstName" type="xs:string"/>
+            <xs:element name="lastName" type="xs:string"/>
+            <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+            <xs:sequence>
+                <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObjects" type="tns:ContactObject"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="NewContactObject">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="number" type="xs:string"/>
+            <xs:sequence>
+                <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContactObject">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="number" type="xs:string"/>
+            <xs:sequence>
+                <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+            </xs:sequence>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContactTypeObject">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="type" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!--
     <wsdl:types>
-        <xsd:schema targetNamespace="http://ws.server.contactws.dia.ru/v1/">
+        <xs:schema targetNamespace="http://ws.server.contactws.dia.ru/v1/">
 
-            <xsd:element name="GetAllContactsRequest">
-                <xsd:complexType>
-                    <xsd:all/>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="GetAllContactsRequest">
+                <xs:complexType>
+                    <xs:all/>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="GetAllContactsResponse">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="PersonObjects" type="tns:PersonObject"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="GetAllContactsResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObjects" type="tns:PersonObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="CreateContactRequest">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Contact" type="tns:NewContactObject"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="CreateContactRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Contact" type="tns:NewContactObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="CreateContactResponse">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Contact" type="tns:ContactObject"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="CreateContactResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Contact" type="tns:ContactObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="UpdateContactRequest">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Contact" type="tns:ContactObject"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="UpdateContactRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Contact" type="tns:ContactObject"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="UpdateContactResponse">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Result" type="tns:Result"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="UpdateContactResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" type="tns:Result"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="DeleteContactRequest">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Id" type="xsd:long"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="DeleteContactRequest">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Id" type="xs:long"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:element name="DeleteContactResponse">
-                <xsd:complexType>
-                    <xsd:sequence>
-                        <xsd:element name="Result" type="tns:Result"/>
-                    </xsd:sequence>
-                </xsd:complexType>
-            </xsd:element>
+            <xs:element name="DeleteContactResponse">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="Result" type="tns:Result"/>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
 
-            <xsd:complexType name="PersonObject">
-                <xsd:sequence>
-                    <xsd:element name="id" type="xsd:long"/>
-                    <xsd:element name="firstName" type="xsd:string"/>
-                    <xsd:element name="lastName" type="xsd:string"/>
-                    <xsd:element name="middleName" type="xsd:string" minOccurs="0"/>
-                    <xsd:sequence>
-                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="ContactObjects" type="tns:ContactObject"/>
-                    </xsd:sequence>
-                </xsd:sequence>
-            </xsd:complexType>
+            <xs:complexType name="PersonObject">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="firstName" type="xs:string"/>
+                    <xs:element name="lastName" type="xs:string"/>
+                    <xs:element name="middleName" type="xs:string" minOccurs="0"/>
+                    <xs:sequence>
+                        <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObjects" type="tns:ContactObject"/>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:complexType>
 
-            <xsd:complexType name="NewContactObject">
-                <xsd:sequence>
-                    <xsd:element name="id" type="xsd:long"/>
-                    <xsd:element name="number" type="xsd:string"/>
-                    <xsd:sequence>
-                        <xsd:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
-                    </xsd:sequence>
-                </xsd:sequence>
-            </xsd:complexType>
+            <xs:complexType name="NewContactObject">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="number" type="xs:string"/>
+                    <xs:sequence>
+                        <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:complexType>
 
-            <xsd:complexType name="ContactObject">
-                <xsd:sequence>
-                    <xsd:element name="id" type="xsd:long"/>
-                    <xsd:element name="number" type="xsd:string"/>
-                    <xsd:sequence>
-                        <xsd:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
-                    </xsd:sequence>
-                </xsd:sequence>
-            </xsd:complexType>
+            <xs:complexType name="ContactObject">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="number" type="xs:string"/>
+                    <xs:sequence>
+                        <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
+                    </xs:sequence>
+                </xs:sequence>
+            </xs:complexType>
 
-            <xsd:complexType name="ContactTypeObject">
-                <xsd:sequence>
-                    <xsd:element name="id" type="xsd:long"/>
-                    <xsd:element name="type" type="xsd:string"/>
-                </xsd:sequence>
-            </xsd:complexType>
-        </xsd:schema>
+            <xs:complexType name="ContactTypeObject">
+                <xs:sequence>
+                    <xs:element name="id" type="xs:long"/>
+                    <xs:element name="type" type="xs:string"/>
+                </xs:sequence>
+            </xs:complexType>
+        </xs:schema>
 
     </wsdl:types>
 
@@ -219,4 +275,5 @@
             <soap:address location="http://localhost:8080/"/>
         </wsdl:port>
     </wsdl:service>
-</wsdl:definitions>
+    -->
+</xs:schema>
