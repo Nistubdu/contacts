@@ -6,6 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dia.contacts.domain.ContactType;
 
 @Repository
-@Transactional
 public interface ContactTypeRepository extends JpaRepository<ContactType, Long> {
 }

@@ -11,7 +11,7 @@
 	<groupId>ru.dia</groupId>
 	<artifactId>contacts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>contact</name>
+	<name>contacts</name>
 	<description>Demo ws project for Spring Boot</description>
 
 	<properties>

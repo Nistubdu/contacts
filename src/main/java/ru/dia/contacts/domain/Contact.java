@@ -13,19 +13,27 @@ public class Contact {
     private long id;
 
     @Column(name = "contact_type_id", nullable = false)
-    private long contactTypeId;
+    private Long contactTypeId;
 
     @Column(name = "person_id", nullable = false)
-    private long personId;
+    private Long personId;
 
     @Column(name = "number", nullable = false)
     private String number;
 
-    public long getId() {
+    public Contact() {  }
+
+    public Contact(Long personId, long contactTypeId, String number) {
+        this.personId = personId;
+        this.contactTypeId = contactTypeId;
+        this.number = number;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,7 +76,7 @@ public class Contact {
         if (this == o) return true;
         if (!(o instanceof Contact)) return false;
         Contact contact = (Contact) o;
-        return getId() == contact.getId() &&
+        return getId().equals( contact.getId() ) &&
                 getContactTypeId() == contact.getContactTypeId() &&
                 getPersonId() == contact.getPersonId() &&
                 getNumber().equals(contact.getNumber());

@@ -10,7 +10,6 @@ import ru.dia.contacts.domain.Contact;
 import java.util.List;
 
 @Repository
-@Transactional
 public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     @Query(value = "SELECT CONT FROM Contact CONT WHERE CONT.personId=:personId")

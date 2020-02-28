@@ -6,6 +6,5 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.dia.contacts.domain.Person;
 
 @Repository
-@Transactional
 public interface PersonRepository extends JpaRepository<Person,Long> {
 }

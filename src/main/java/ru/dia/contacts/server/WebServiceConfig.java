@@ -29,7 +29,7 @@ public class WebServiceConfig extends WsConfigurerAdapter {
         DefaultWsdl11Definition wsdl11Definition = new DefaultWsdl11Definition();
         wsdl11Definition.setPortTypeName("ContactsPort");
         wsdl11Definition.setLocationUri("/ws");
-        wsdl11Definition.setTargetNamespace("http://localhost:8080");
+        wsdl11Definition.setTargetNamespace("http://ws.server.contacts.dia.ru/");
         wsdl11Definition.setSchema(contactSchema);
         return wsdl11Definition;
     }

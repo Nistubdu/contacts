@@ -16,7 +16,77 @@
     <xs:element name="getAllContactsResponse">
         <xs:complexType>
             <xs:sequence>
+                <xs:element name="Result" type="tns:Result"/>
                 <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObject" type="tns:PersonObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createContactRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="personId" type="xs:long">
+                    <xs:annotation>
+                        <xs:documentation>
+                            идентификатор персоны
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="contactTypeId" type="xs:long">
+                    <xs:annotation>
+                        <xs:documentation>
+                            идентификатор типа контакта
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+                <xs:element name="number" type="xs:string">
+                    <xs:annotation>
+                        <xs:documentation>
+                            контактный номер
+                        </xs:documentation>
+                    </xs:annotation>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="createContactResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Result" type="tns:Result"/>
+                <xs:element name="ContactObject" type="tns:ContactObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateContactRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Contact" type="tns:ContactObject"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="updateContactResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Result" type="tns:Result"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteContactRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="contactId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="deleteContactResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Result" type="tns:Result"/>
             </xs:sequence>
         </xs:complexType>
     </xs:element>
@@ -28,6 +98,11 @@
             <xs:element name="firstName" type="xs:string"/>
             <xs:element name="middleName" type="xs:string" minOccurs="0"/>
             <xs:sequence>
+                <xs:annotation>
+                    <xs:documentation>
+                        контакты
+                    </xs:documentation>
+                </xs:annotation>
                 <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObject" type="tns:ContactObject"/>
             </xs:sequence>
         </xs:sequence>
@@ -38,6 +113,11 @@
             <xs:element name="id" type="xs:long"/>
             <xs:element name="number" type="xs:string"/>
             <xs:sequence>
+                <xs:annotation>
+                    <xs:documentation>
+                        тип контакта
+                    </xs:documentation>
+                </xs:annotation>
                 <xs:element name="ContactTypeObject" type="tns:ContactTypeObject"/>
             </xs:sequence>
         </xs:sequence>
@@ -50,220 +130,12 @@
         </xs:sequence>
     </xs:complexType>
 
-    <!--
-    <wsdl:types>
-        <xs:schema targetNamespace="http://ws.server.contactws.dia.ru/v1/">
-
-            <xs:element name="GetAllContactsRequest">
-                <xs:complexType>
-                    <xs:all/>
-                </xs:complexType>
+    <xs:complexType name="Result">
+        <xs:sequence>
+            <xs:element name="code" type="xs:long">
             </xs:element>
+            <xs:element name="description" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
 
-            <xs:element name="GetAllContactsResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="unbounded" name="PersonObjects" type="tns:PersonObject"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="CreateContactRequest">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Contact" type="tns:NewContactObject"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="CreateContactResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Contact" type="tns:ContactObject"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="UpdateContactRequest">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Contact" type="tns:ContactObject"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="UpdateContactResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Result" type="tns:Result"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="DeleteContactRequest">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Id" type="xs:long"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:element name="DeleteContactResponse">
-                <xs:complexType>
-                    <xs:sequence>
-                        <xs:element name="Result" type="tns:Result"/>
-                    </xs:sequence>
-                </xs:complexType>
-            </xs:element>
-
-            <xs:complexType name="PersonObject">
-                <xs:sequence>
-                    <xs:element name="id" type="xs:long"/>
-                    <xs:element name="firstName" type="xs:string"/>
-                    <xs:element name="lastName" type="xs:string"/>
-                    <xs:element name="middleName" type="xs:string" minOccurs="0"/>
-                    <xs:sequence>
-                        <xs:element minOccurs="0" maxOccurs="unbounded" name="ContactObjects" type="tns:ContactObject"/>
-                    </xs:sequence>
-                </xs:sequence>
-            </xs:complexType>
-
-            <xs:complexType name="NewContactObject">
-                <xs:sequence>
-                    <xs:element name="id" type="xs:long"/>
-                    <xs:element name="number" type="xs:string"/>
-                    <xs:sequence>
-                        <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
-                    </xs:sequence>
-                </xs:sequence>
-            </xs:complexType>
-
-            <xs:complexType name="ContactObject">
-                <xs:sequence>
-                    <xs:element name="id" type="xs:long"/>
-                    <xs:element name="number" type="xs:string"/>
-                    <xs:sequence>
-                        <xs:element name="ContactTypeObjects" type="tns:ContactTypeObject"/>
-                    </xs:sequence>
-                </xs:sequence>
-            </xs:complexType>
-
-            <xs:complexType name="ContactTypeObject">
-                <xs:sequence>
-                    <xs:element name="id" type="xs:long"/>
-                    <xs:element name="type" type="xs:string"/>
-                </xs:sequence>
-            </xs:complexType>
-        </xs:schema>
-
-    </wsdl:types>
-
-    <wsdl:message name="GetAllContactsRequest"/>
-
-    <wsdl:message name="GetAllContactsResponse">
-        <wsdl:part element="tns:GetAllContactsResponse" name="parameters"/>
-    </wsdl:message>
-
-    <wsdl:message name="CreateContactRequest">
-        <wsdl:part element="tns:CreateContactRequest" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="CreateContactResponse">
-        <wsdl:part element="tns:CreateContactResponse" name="parameters"/>
-    </wsdl:message>
-
-    <wsdl:message name="DeleteContactRequest">
-        <wsdl:part element="tns:DeleteContactRequest" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="DeleteContactResponse">
-        <wsdl:part element="tns:DeleteContactResponse" name="parameters"/>
-    </wsdl:message>
-
-    <wsdl:message name="UpdateContactRequest">
-        <wsdl:part element="tns:UpdateContactRequest" name="parameters"/>
-    </wsdl:message>
-    <wsdl:message name="UpdateContactResponse">
-        <wsdl:part element="tns:UpdateContactResponse" name="parameters"/>
-    </wsdl:message>
-
-    <wsdl:binding name="ContactsSOAP_SOAP" type="tns:ControllerSOAP">
-        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-        <wsdl:operation name="GetAllContacts">
-            <soap:operation soapAction="http://ws.server.contactws.dia.ru/v1//GetAllContacts"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-
-        <wsdl:operation name="CreateContact">
-            <soap:operation soapAction="http://ws.server.contactws.dia.ru/v1//CreateContact"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-
-        <wsdl:operation name="UpdateContact">
-            <soap:operation soapAction="http://ws.server.contactws.dia.ru/v1//UpdateContact"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-
-        <wsdl:operation name="DeleteContact">
-            <soap:operation soapAction="http://ws.server.contactws.dia.ru/v1//DeleteContact"/>
-            <wsdl:input>
-                <soap:body use="literal"/>
-            </wsdl:input>
-            <wsdl:output>
-                <soap:body use="literal"/>
-            </wsdl:output>
-        </wsdl:operation>
-
-    </wsdl:binding>
-
-    <wsdl:portType name="ContactsSOAP">
-
-        <wsdl:operation name="GetAllContacts">
-            <wsdl:documentation/>
-            <wsdl:input message="tns:GetAllContactsRequest"/>
-            <wsdl:output message="tns:GetAllContactsResponse"/>
-        </wsdl:operation>
-
-        <wsdl:operation name="CreateContact">
-            <wsdl:documentation/>
-            <wsdl:input message="tns:CreateContactRequest"/>
-            <wsdl:output message="tns:CreateContactResponse"/>
-        </wsdl:operation>
-
-        <wsdl:operation name="UpdateContact">
-            <wsdl:documentation/>
-            <wsdl:input message="tns:UpdateContactRequest"/>
-            <wsdl:output message="tns:UpdateContactResponse"/>
-        </wsdl:operation>
-
-        <wsdl:operation name="GetDeviceValues">
-            <wsdl:input message="tns:GetDeviceValuesRequest"/>
-            <wsdl:output message="tns:GetDeviceValuesResponse"/>
-        </wsdl:operation>
-        <wsdl:operation name="GetMessages">
-            <wsdl:documentation/>
-            <wsdl:input message="tns:GetMessagesRequest"/>
-            <wsdl:output message="tns:GetMessagesResponse"/>
-        </wsdl:operation>
-    </wsdl:portType>
-
-    <wsdl:service name="ContactsSOAP">
-        <wsdl:port binding="tns:ContactsSOAP_SOAP" name="ContactsSOAP">
-            <soap:address location="http://localhost:8080/"/>
-        </wsdl:port>
-    </wsdl:service>
-    -->
 </xs:schema>
