@@ -33,16 +33,6 @@
         </xs:sequence>
     </xs:complexType>
 
-    <xs:complexType name="NewContactObject">
-        <xs:sequence>
-            <xs:element name="id" type="xs:long"/>
-            <xs:element name="number" type="xs:string"/>
-            <xs:sequence>
-                <xs:element name="ContactTypeObject" type="tns:ContactTypeObject"/>
-            </xs:sequence>
-        </xs:sequence>
-    </xs:complexType>
-
     <xs:complexType name="ContactObject">
         <xs:sequence>
             <xs:element name="id" type="xs:long"/>
